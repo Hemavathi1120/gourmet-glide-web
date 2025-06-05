@@ -1,12 +1,20 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Header from '../components/organisms/Header';
+import Hero from '../components/organisms/Hero';
+import FeaturedMenu from '../components/organisms/FeaturedMenu';
+import About from '../components/organisms/About';
+import Footer from '../components/organisms/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-gray-950 text-white">
+      <Header />
+      <Hero />
+      <FeaturedMenu />
+      <About />
+      <Footer />
     </div>
   );
 };
