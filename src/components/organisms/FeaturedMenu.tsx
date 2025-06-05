@@ -12,7 +12,7 @@ const FeaturedMenu = () => {
       name: "Seared Wagyu Tenderloin",
       description: "Premium A5 Wagyu with truffle reduction and seasonal vegetables",
       price: "$125",
-      image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      image: "https://images.unsplash.com/photo-1558030006-450675393462?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
       category: "Main Course"
     },
     {
@@ -20,7 +20,7 @@ const FeaturedMenu = () => {
       name: "Mediterranean Sea Bass",
       description: "Fresh catch with olive tapenade, roasted tomatoes, and herb oil",
       price: "$85",
-      image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
       category: "Main Course"
     },
     {
@@ -28,7 +28,7 @@ const FeaturedMenu = () => {
       name: "Chocolate Soufflé",
       description: "Dark chocolate soufflé with vanilla bean ice cream and gold leaf",
       price: "$45",
-      image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      image: "https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
       category: "Dessert"
     }
   ];

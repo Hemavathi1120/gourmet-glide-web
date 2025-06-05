@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '../components/organisms/Header';
 import Footer from '../components/organisms/Footer';
@@ -14,7 +13,7 @@ const Menu = () => {
       description: "Premium A5 Wagyu with truffle reduction and seasonal vegetables",
       price: 125,
       category: "main",
-      image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      image: "https://images.unsplash.com/photo-1558030006-450675393462?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
       dietary: ["gluten-free"]
     },
     {
@@ -23,7 +22,7 @@ const Menu = () => {
       description: "Fresh catch with olive tapenade, roasted tomatoes, and herb oil",
       price: 85,
       category: "main",
-      image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
       dietary: ["pescatarian", "gluten-free"]
     },
     {
@@ -32,7 +31,7 @@ const Menu = () => {
       description: "Creamy arborio rice with black truffle shavings and parmesan",
       price: 65,
       category: "starter",
-      image: "https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      image: "https://images.unsplash.com/photo-1563379091339-03246963d51a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
       dietary: ["vegetarian"]
     },
     {
@@ -41,7 +40,7 @@ const Menu = () => {
       description: "Dark chocolate soufflé with vanilla bean ice cream and gold leaf",
       price: 45,
       category: "dessert",
-      image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      image: "https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
       dietary: ["vegetarian"]
     },
     {
@@ -50,7 +49,7 @@ const Menu = () => {
       description: "Fresh Blue Point oysters with spinach, herbs, and hollandaise",
       price: 35,
       category: "starter",
-      image: "https://images.unsplash.com/photo-1606563521277-8572e0a3b6ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      image: "https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
       dietary: ["pescatarian", "gluten-free"]
     },
     {
@@ -59,8 +58,89 @@ const Menu = () => {
       description: "Curated selection of premium wines from our cellar",
       price: 25,
       category: "drinks",
-      image: "https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
       dietary: ["vegan"]
+    },
+    {
+      id: 7,
+      name: "Lobster Bisque",
+      description: "Rich and creamy lobster bisque with cognac and fresh herbs",
+      price: 28,
+      category: "starter",
+      image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      dietary: ["pescatarian"]
+    },
+    {
+      id: 8,
+      name: "Duck Confit",
+      description: "Slow-cooked duck leg with cherry gastrique and roasted potatoes",
+      price: 95,
+      category: "main",
+      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      dietary: ["gluten-free"]
+    },
+    {
+      id: 9,
+      name: "Seared Scallops",
+      description: "Pan-seared scallops with cauliflower purée and pancetta",
+      price: 75,
+      category: "main",
+      image: "https://images.unsplash.com/photo-1563379091339-03246963d51a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      dietary: ["pescatarian", "gluten-free"]
+    },
+    {
+      id: 10,
+      name: "Beef Tartare",
+      description: "Hand-cut prime beef with quail egg and traditional accompaniments",
+      price: 42,
+      category: "starter",
+      image: "https://images.unsplash.com/photo-1432139509613-5c4255815697?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      dietary: ["gluten-free"]
+    },
+    {
+      id: 11,
+      name: "Tiramisu",
+      description: "Classic Italian dessert with espresso-soaked ladyfingers",
+      price: 18,
+      category: "dessert",
+      image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      dietary: ["vegetarian"]
+    },
+    {
+      id: 12,
+      name: "Crème Brûlée",
+      description: "Vanilla bean custard with caramelized sugar crust",
+      price: 22,
+      category: "dessert",
+      image: "https://images.unsplash.com/photo-1470324161839-ce2bb6fa6bc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      dietary: ["vegetarian", "gluten-free"]
+    },
+    {
+      id: 13,
+      name: "Craft Cocktails",
+      description: "Artisanal cocktails crafted by our master mixologist",
+      price: 18,
+      category: "drinks",
+      image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      dietary: ["vegan"]
+    },
+    {
+      id: 14,
+      name: "Fresh Artisan Coffee",
+      description: "Single-origin coffee beans roasted to perfection",
+      price: 8,
+      category: "drinks",
+      image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      dietary: ["vegan"]
+    },
+    {
+      id: 15,
+      name: "Lamb Rack",
+      description: "Herb-crusted rack of lamb with rosemary jus and ratatouille",
+      price: 110,
+      category: "main",
+      image: "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+      dietary: ["gluten-free"]
     }
   ];
 
