@@ -1,8 +1,11 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../atoms/Button';
 
 const FeaturedMenu = () => {
+  const navigate = useNavigate();
+
   const featuredDishes = [
     {
       id: 1,
@@ -29,6 +32,16 @@ const FeaturedMenu = () => {
       category: "Dessert"
     }
   ];
+
+  const handleAddToCart = (dish: any) => {
+    console.log('Adding to cart:', dish);
+    // TODO: Implement cart functionality
+    alert(`Added ${dish.name} to cart!`);
+  };
+
+  const handleViewFullMenu = () => {
+    navigate('/menu');
+  };
 
   return (
     <section className="py-20 bg-gray-900">
@@ -71,7 +84,11 @@ const FeaturedMenu = () => {
                 </p>
                 <div className="flex items-center justify-between">
                   <span className="text-2xl font-bold text-amber-400">{dish.price}</span>
-                  <Button variant="outline" size="sm">
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => handleAddToCart(dish)}
+                  >
                     Add to Cart
                   </Button>
                 </div>
@@ -81,7 +98,7 @@ const FeaturedMenu = () => {
         </div>
 
         <div className="text-center mt-12">
-          <Button size="lg">
+          <Button size="lg" onClick={handleViewFullMenu}>
             View Full Menu
           </Button>
         </div>

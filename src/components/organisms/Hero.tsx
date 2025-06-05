@@ -1,9 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../atoms/Button';
 
 const Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const navigate = useNavigate();
   
   const heroImages = [
     'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
@@ -18,6 +20,14 @@ const Hero = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  const handleReservation = () => {
+    navigate('/reservations');
+  };
+
+  const handleExploreMenu = () => {
+    navigate('/menu');
+  };
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -48,10 +58,10 @@ const Hero = () => {
           Where artistry meets flavor in an unforgettable dining experience crafted by award-winning chefs
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button size="lg" className="min-w-48">
+          <Button size="lg" className="min-w-48" onClick={handleReservation}>
             Reserve Your Table
           </Button>
-          <Button variant="outline" size="lg" className="min-w-48">
+          <Button variant="outline" size="lg" className="min-w-48" onClick={handleExploreMenu}>
             Explore Menu
           </Button>
         </div>

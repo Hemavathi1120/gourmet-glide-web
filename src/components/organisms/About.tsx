@@ -1,8 +1,15 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../atoms/Button';
 
 const About = () => {
+  const navigate = useNavigate();
+
+  const handleLearnMore = () => {
+    navigate('/about');
+  };
+
   return (
     <section className="py-20 bg-gray-950">
       <div className="container mx-auto px-6">
@@ -20,7 +27,7 @@ const About = () => {
               Every dish tells a story of passion, creativity, and respect for the finest ingredients. 
               We source locally when possible and travel globally to bring you flavors that transcend expectations.
             </p>
-            <Button size="lg">
+            <Button size="lg" onClick={handleLearnMore}>
               Learn More About Us
             </Button>
           </div>
