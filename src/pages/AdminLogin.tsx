@@ -1,6 +1,8 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../config/firebase';
 import Button from '../components/atoms/Button';
 import { useToast } from '@/hooks/use-toast';
 
@@ -13,35 +15,39 @@ const AdminLogin = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  // Mock admin credentials - in production, this would be handled by Firebase Auth
-  const ADMIN_CREDENTIALS = {
-    email: 'admin@restaurant.com',
-    password: 'admin123'
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate API call delay
-    setTimeout(() => {
-      if (credentials.email === ADMIN_CREDENTIALS.email && 
-          credentials.password === ADMIN_CREDENTIALS.password) {
-        localStorage.setItem('adminAuth', 'true');
-        toast({
-          title: "Login Successful",
-          description: "Welcome to the admin dashboard",
-        });
-        navigate('/admin/dashboard');
-      } else {
-        toast({
-          title: "Login Failed",
-          description: "Invalid email or password",
-          variant: "destructive",
-        });
-      }
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth, 
+        credentials.email, 
+        credentials.password
+      );
+      
+      // Store auth token and user info
+      localStorage.setItem('adminAuth', 'true');
+      localStorage.setItem('adminUser', JSON.stringify({
+        uid: userCredential.user.uid,
+        email: userCredential.user.email
+      }));
+
+      toast({
+        title: "Login Successful",
+        description: "Welcome to the admin dashboard",
+      });
+      navigate('/admin/dashboard');
+    } catch (error: any) {
+      console.error('Login error:', error);
+      toast({
+        title: "Login Failed",
+        description: error.message || "Invalid email or password",
+        variant: "destructive",
+      });
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,7 +75,7 @@ const AdminLogin = () => {
                 value={credentials.email}
                 onChange={handleChange}
                 className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-amber-400"
-                placeholder="admin@restaurant.com"
+                placeholder="Enter your email"
                 required
               />
             </div>
@@ -97,9 +103,8 @@ const AdminLogin = () => {
           </form>
 
           <div className="mt-6 p-4 bg-gray-700 rounded-lg">
-            <p className="text-sm text-gray-300 mb-2">Demo Credentials:</p>
-            <p className="text-xs text-gray-400">Email: admin@restaurant.com</p>
-            <p className="text-xs text-gray-400">Password: admin123</p>
+            <p className="text-sm text-gray-300 mb-2">Firebase Authentication:</p>
+            <p className="text-xs text-gray-400">Use your Firebase admin credentials</p>
           </div>
         </div>
       </div>
