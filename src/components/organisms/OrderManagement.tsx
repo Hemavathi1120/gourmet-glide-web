@@ -81,7 +81,7 @@ const OrderManagement = () => {
             <Button
               key={status}
               size="sm"
-              variant={filterStatus === status ? 'default' : 'outline'}
+              variant={filterStatus === status ? 'primary' : 'outline'}
               onClick={() => setFilterStatus(status)}
             >
               {status.charAt(0).toUpperCase() + status.slice(1)}
