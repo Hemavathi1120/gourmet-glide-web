@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,6 +9,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Reservations from "./pages/Reservations";
 import Gallery from "./pages/Gallery";
+import PreOrder from "./pages/PreOrder";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -29,6 +29,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/reservations" element={<Reservations />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/pre-order" element={<PreOrder />} />
           
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminLogin />} />
