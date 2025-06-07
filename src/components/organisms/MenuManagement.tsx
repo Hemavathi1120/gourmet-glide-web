@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Button from '../atoms/Button';
 import { useToast } from '@/hooks/use-toast';
@@ -10,18 +9,22 @@ const MenuManagement = () => {
   const { toast } = useToast();
   const { menuItems, addMenuItem, updateMenuItem, deleteMenuItem } = useMenu();
 
+  console.log('MenuManagement: Current menu items:', menuItems.length);
+
   const [formData, setFormData] = useState({
     name: '',
     description: '',
     price: '',
     category: 'starter',
-    dietary: [],
+    dietary: [] as string[],
     image: '',
     availability: true
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    console.log('MenuManagement: Form submitted with data:', formData);
     
     if (editingItem) {
       updateMenuItem(editingItem.id, {
@@ -34,10 +37,11 @@ const MenuManagement = () => {
       });
       setEditingItem(null);
     } else {
-      addMenuItem({
+      const newItem = addMenuItem({
         ...formData,
         price: Number(formData.price)
       });
+      console.log('MenuManagement: Added new item:', newItem);
       toast({
         title: "Item Added",
         description: "New menu item has been added successfully",

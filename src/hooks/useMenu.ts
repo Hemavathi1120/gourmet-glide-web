@@ -6,14 +6,27 @@ export const useMenu = () => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
 
   useEffect(() => {
-    const unsubscribe = menuService.subscribe(setMenuItems);
+    console.log('useMenu: Setting up subscription');
+    const unsubscribe = menuService.subscribe((items) => {
+      console.log('useMenu: Received menu items update:', items.length);
+      setMenuItems(items);
+    });
     return unsubscribe;
   }, []);
 
   return {
     menuItems,
-    addMenuItem: menuService.addMenuItem.bind(menuService),
-    updateMenuItem: menuService.updateMenuItem.bind(menuService),
-    deleteMenuItem: menuService.deleteMenuItem.bind(menuService)
+    addMenuItem: (item: Omit<MenuItem, 'id'>) => {
+      console.log('useMenu: Adding menu item via hook');
+      return menuService.addMenuItem(item);
+    },
+    updateMenuItem: (id: number, updates: Partial<MenuItem>) => {
+      console.log('useMenu: Updating menu item via hook');
+      return menuService.updateMenuItem(id, updates);
+    },
+    deleteMenuItem: (id: number) => {
+      console.log('useMenu: Deleting menu item via hook');
+      return menuService.deleteMenuItem(id);
+    }
   };
 };

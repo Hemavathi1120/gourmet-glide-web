@@ -1,4 +1,3 @@
-
 type MenuItem = {
   id: number;
   name: string;
@@ -169,22 +168,26 @@ class MenuService {
   private subscribers: MenuSubscriber[] = [];
 
   subscribe(callback: MenuSubscriber) {
+    console.log('MenuService: New subscriber added');
     this.subscribers.push(callback);
     // Immediately call with current data
-    callback(this.menuItems);
+    callback([...this.menuItems]);
     
     // Return unsubscribe function
     return () => {
+      console.log('MenuService: Subscriber removed');
       this.subscribers = this.subscribers.filter(sub => sub !== callback);
     };
   }
 
   private notifySubscribers() {
-    this.subscribers.forEach(callback => callback(this.menuItems));
+    console.log('MenuService: Notifying subscribers, total:', this.subscribers.length);
+    console.log('MenuService: Current menu items count:', this.menuItems.length);
+    this.subscribers.forEach(callback => callback([...this.menuItems]));
   }
 
   getMenuItems(): MenuItem[] {
-    return this.menuItems;
+    return [...this.menuItems];
   }
 
   addMenuItem(item: Omit<MenuItem, 'id'>) {
@@ -192,6 +195,7 @@ class MenuService {
       ...item,
       id: Date.now()
     };
+    console.log('MenuService: Adding new item:', newItem);
     this.menuItems.push(newItem);
     this.notifySubscribers();
     return newItem;
@@ -201,6 +205,7 @@ class MenuService {
     const index = this.menuItems.findIndex(item => item.id === id);
     if (index !== -1) {
       this.menuItems[index] = { ...this.menuItems[index], ...updates };
+      console.log('MenuService: Updated item:', this.menuItems[index]);
       this.notifySubscribers();
       return this.menuItems[index];
     }
@@ -208,7 +213,9 @@ class MenuService {
   }
 
   deleteMenuItem(id: number) {
+    const beforeLength = this.menuItems.length;
     this.menuItems = this.menuItems.filter(item => item.id !== id);
+    console.log('MenuService: Deleted item, items before:', beforeLength, 'after:', this.menuItems.length);
     this.notifySubscribers();
   }
 }
