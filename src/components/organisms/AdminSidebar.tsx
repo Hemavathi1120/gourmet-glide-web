@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 interface AdminSidebarProps {
@@ -10,7 +11,6 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isOpen, activeTab, setActiv
   const menuItems = [
     { id: 'overview', label: 'Dashboard', icon: '📊' },
     { id: 'menu', label: 'Menu Items', icon: '🍽️' },
-    { id: 'preorders', label: 'Pre-Orders', icon: '📦' },
     { id: 'orders', label: 'Orders', icon: '📋' },
     { id: 'reservations', label: 'Reservations', icon: '📅' },
     { id: 'messages', label: 'Messages', icon: '💬' },

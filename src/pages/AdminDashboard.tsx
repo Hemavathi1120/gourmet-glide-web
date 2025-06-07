@@ -1,12 +1,12 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth from '../config/firebase';
+import { auth } from '../config/firebase';
 import AdminHeader from '../components/organisms/AdminHeader';
 import AdminSidebar from '../components/organisms/AdminSidebar';
 import DashboardOverview from '../components/organisms/DashboardOverview';
 import MenuManagement from '../components/organisms/MenuManagement';
-import PreOrderManagement from '../components/organisms/PreOrderManagement';
 import OrderManagement from '../components/organisms/OrderManagement';
 import ReservationManagement from '../components/organisms/ReservationManagement';
 import MessageManagement from '../components/organisms/MessageManagement';
@@ -45,8 +45,6 @@ const AdminDashboard = () => {
         return <DashboardOverview />;
       case 'menu':
         return <MenuManagement />;
-      case 'preorders':
-        return <PreOrderManagement />;
       case 'orders':
         return <OrderManagement />;
       case 'reservations':
