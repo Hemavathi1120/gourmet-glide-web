@@ -2,36 +2,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../atoms/Button';
+import { useMenu } from '../../hooks/useMenu';
 
 const FeaturedMenu = () => {
   const navigate = useNavigate();
+  const { menuItems } = useMenu();
 
-  const featuredDishes = [
-    {
-      id: 1,
-      name: "Seared Wagyu Tenderloin",
-      description: "Premium A5 Wagyu with truffle reduction and seasonal vegetables",
-      price: "$125",
-      image: "https://images.unsplash.com/photo-1558030006-450675393462?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      category: "Main Course"
-    },
-    {
-      id: 2,
-      name: "Mediterranean Sea Bass",
-      description: "Fresh catch with olive tapenade, roasted tomatoes, and herb oil",
-      price: "$85",
-      image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      category: "Main Course"
-    },
-    {
-      id: 3,
-      name: "Chocolate Soufflé",
-      description: "Dark chocolate soufflé with vanilla bean ice cream and gold leaf",
-      price: "$45",
-      image: "https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      category: "Dessert"
-    }
-  ];
+  // Get the first 3 main course items for featured display
+  const featuredDishes = menuItems
+    .filter(item => item.category === 'main')
+    .slice(0, 3);
 
   const handleAddToCart = (dish: any) => {
     console.log('Adding to cart:', dish);
@@ -83,7 +63,7 @@ const FeaturedMenu = () => {
                   {dish.description}
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold text-amber-400">{dish.price}</span>
+                  <span className="text-2xl font-bold text-amber-400">${dish.price}</span>
                   <Button 
                     variant="outline" 
                     size="sm"

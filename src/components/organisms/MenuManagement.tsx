@@ -2,11 +2,13 @@
 import React, { useState } from 'react';
 import Button from '../atoms/Button';
 import { useToast } from '@/hooks/use-toast';
+import { useMenu } from '../../hooks/useMenu';
 
 const MenuManagement = () => {
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingItem, setEditingItem] = useState<any>(null);
   const { toast } = useToast();
+  const { menuItems, addMenuItem, updateMenuItem, deleteMenuItem } = useMenu();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -18,50 +20,24 @@ const MenuManagement = () => {
     availability: true
   });
 
-  const [menuItems, setMenuItems] = useState([
-    {
-      id: 1,
-      name: "Seared Wagyu Tenderloin",
-      description: "Premium A5 Wagyu with truffle reduction",
-      price: 125,
-      category: "main",
-      dietary: ["gluten-free"],
-      availability: true,
-      image: "https://images.unsplash.com/photo-1558030006-450675393462?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-    },
-    {
-      id: 2,
-      name: "Truffle Risotto",
-      description: "Creamy arborio rice with black truffle",
-      price: 65,
-      category: "starter",
-      dietary: ["vegetarian"],
-      availability: true,
-      image: "https://images.unsplash.com/photo-1563379091339-03246963d51a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-    }
-  ]);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (editingItem) {
-      setMenuItems(prev => prev.map(item => 
-        item.id === editingItem.id 
-          ? { ...formData, id: editingItem.id, price: Number(formData.price) }
-          : item
-      ));
+      updateMenuItem(editingItem.id, {
+        ...formData,
+        price: Number(formData.price)
+      });
       toast({
         title: "Item Updated",
         description: "Menu item has been successfully updated",
       });
       setEditingItem(null);
     } else {
-      const newItem = {
+      addMenuItem({
         ...formData,
-        id: Date.now(),
         price: Number(formData.price)
-      };
-      setMenuItems(prev => [...prev, newItem]);
+      });
       toast({
         title: "Item Added",
         description: "New menu item has been added successfully",
@@ -95,7 +71,7 @@ const MenuManagement = () => {
   };
 
   const handleDelete = (id: number) => {
-    setMenuItems(prev => prev.filter(item => item.id !== id));
+    deleteMenuItem(id);
     toast({
       title: "Item Deleted",
       description: "Menu item has been removed",
